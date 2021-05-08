@@ -7,27 +7,35 @@ using Newtonsoft.Json;
 
 namespace IntercomTakeHomeTest
 {
-    class FileIO
+    public class FileIO
     {
         public static List<Customer> JsonCustomerListToCustomerList(string fileLocation){
 
             var customerList = new List<Customer>();
 
-            string line;           
+            string line;
 
-            // Read the file and display it line by line.  
-            System.IO.StreamReader file =
-                new System.IO.StreamReader(@""+ fileLocation + "");
-            while((line = file.ReadLine()) != null)
-            {  
-                Customer customer = JsonConvert.DeserializeObject<Customer>(line);
-                
-                customerList.Add(customer);
+            try{
+                using(System.IO.StreamReader file = new System.IO.StreamReader(@""+ fileLocation + ""))
+                {
+                    while((line = file.ReadLine()) != null)
+                    {  
+                        Customer customer = JsonConvert.DeserializeObject<Customer>(line);
+                        
+                        //If there's no name or customer Id then the data must be invalid
+                        if(customer.Name != null || customer.User_Id != 0){
+                            customerList.Add(customer);
+                        } else {
+                            Console.WriteLine("Please make sure that your input data is valid");
+                        }
+                    }
+                }                
+            } catch (IOException ex) {
+                Console.WriteLine($"Exception Occured: {ex}");
+                return customerList;
             }
 
-            file.Close();
-
-            return customerList;            
+            return customerList;
         }
 
         public static void CustomerListToTextFile(List<Customer> customerList){

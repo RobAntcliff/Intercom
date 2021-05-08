@@ -52,7 +52,7 @@ namespace IntercomTakeHomeTest
         /// <param name="longitude2">The second point's longitude in degrees.</param>
         public static double GreatCircleDistanceOnEarth(double latitude1, double longitude1, double latitude2, double longitude2)
         {
-            //Making sure 
+            //Making sure coordinates are valid
             if(!AreValidCoordinates(latitude1, longitude1) || !AreValidCoordinates(latitude2, longitude2))
             {
                 throw new ArgumentOutOfRangeException("One or more of your arguments are out of range." + 

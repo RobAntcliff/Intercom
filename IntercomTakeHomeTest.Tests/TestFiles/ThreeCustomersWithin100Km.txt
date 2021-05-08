@@ -1,0 +1,3 @@
+{"latitude": "53.2451100", "user_id": 4, "name": "Jane Doe", "longitude": "-6.238350"}
+{"latitude": "53.2451100", "user_id": 4, "name": "Jane Doe", "longitude": "-6.238350"}
+{"latitude": "53.2451100", "user_id": 4, "name": "Jane Doe", "longitude": "-6.238350"}

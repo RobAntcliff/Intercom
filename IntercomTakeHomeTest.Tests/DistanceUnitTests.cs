@@ -1,6 +1,5 @@
 using System;
 using Xunit;
-using IntercomTakeHomeTest;
 
 namespace IntercomTakeHomeTest.Tests
 {
@@ -169,6 +168,19 @@ namespace IntercomTakeHomeTest.Tests
             double longitude2 = -6.257664;
 
             Assert.Throws<ArgumentOutOfRangeException>(() => Distance.GreatCircleDistanceOnEarth(latitude1, longitude1, latitude2, longitude2));
+        }
+
+        [Fact]
+        public void Given_ValueInDegrees_When_DegreesToRadiansCalled_Then_ExpectedResultReturned(){
+            double degrees = 57.2958;
+            double expectedResult = 1.000000;
+
+            double result = Distance.DegreesToRadians(degrees);
+
+            //6 decimal places of accuracy is accurate enough
+            result = Math.Round(result, 6);
+
+            Assert.Equal(expectedResult, result);
         }
     }
 }
