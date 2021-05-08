@@ -33,9 +33,17 @@ namespace IntercomTakeHomeTest
             }
             
             //Sort the users in ascending order by User_Id
-            customersWithin100km.Sort((x, y) => x.User_Id.CompareTo(y.User_Id));
+            SortCustomerList(customersWithin100km);
 
             return FileConversion.CustomerListToJson(customersWithin100km);
+        }
+
+        /// <summary>
+        /// Sorts a List of Customer Objects in ascendin order by UserId
+        /// </summary>
+        /// <param name="customerList">List of Customer objects to be sorted</param>
+        public static void SortCustomerList(List<Customer> customerList){
+            customerList.Sort((x, y) => x.User_Id.CompareTo(y.User_Id));
         }
     }
 }

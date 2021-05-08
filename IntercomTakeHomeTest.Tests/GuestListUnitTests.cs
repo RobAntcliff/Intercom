@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using Xunit;
+using System.Collections.Generic;
 
 namespace IntercomTakeHomeTest.Tests
 {
@@ -44,6 +45,26 @@ namespace IntercomTakeHomeTest.Tests
             string result = GuestList.GetListOfCustomersWithin100kmOfIntercomOffice("../../../TestFiles/SingleCustomerWithin100Km.txt");
             
             Assert.Equal(expectedResult, result);            
+        }
+
+        [Fact]
+        public void Given_AnUnsortedListOfCustomers_When_SortCustomerList_Then_ListSortedByCustomerId(){
+            
+            List<Customer> customerList = new List<Customer>();
+
+            var rand = new Random();
+
+            for (int ctr = 0; ctr <= 10; ctr++) {
+                int userId = rand.Next(1, 101);
+                Customer customer = new Customer("Jane Doe", userId, 10.0, 10.0);
+                customerList.Add(customer);
+            }
+
+            GuestList.SortCustomerList(customerList);
+
+            for(int i = 1; i < customerList.Count; i++){
+                Assert.True(customerList[i].User_Id >= customerList[i - 1].User_Id);
+            }
         }
     }
 }
