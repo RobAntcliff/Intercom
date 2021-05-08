@@ -2,10 +2,42 @@ using System;
 
 namespace IntercomTakeHomeTest
 {
-    class Distance
+    public class Distance
     {
         //The mean radius of the Earth is 6371 kilometers according to Wikipedia
         private const int earthRadius = 6371;
+
+        /// <summary>
+        /// Determines wether a set of coordinates are valid coordinates
+        /// </summary>
+        /// <returns>
+        /// True if valid, False if not valid 
+        /// </returns>
+        /// <param name="latitude">The point's latitude in degrees.</param>
+        /// <param name="longitude">The point's longitude in degrees.</param>
+        public static bool AreValidCoordinates(double latitude, double longitude){
+            return Math.Abs(latitude) <= 90 && Math.Abs(longitude) <= 180;
+        }
+
+        /// <summary>
+        /// Calculates if two points on Earth are within 100 Kilometers of eachother
+        /// </summary>
+        /// <returns>
+        /// True if 2 points are within 100 Kilometers of eachother, False if the points are more than 100 Kilometers from eachother or
+        /// if the points are invalid 
+        /// </returns>
+        /// <param name="latitude1">The first point's latitude in degrees.</param>
+        /// <param name="longitude1">The first point's longitude in degrees.</param>
+        /// <param name="latitude2">The second point's latitude in degrees.</param>
+        /// <param name="longitude2">The second point's longitude in degrees.</param>
+        public static bool IsLessThan100KilometersBetweenPoints(double latitude1, double longitude1, double latitude2, double longitude2){
+            try{
+                return Distance.GreatCircleDistanceOnEarth(latitude1, longitude1, latitude2, longitude2) < 100;
+            } catch (ArgumentOutOfRangeException e) {
+                Console.WriteLine($"Exception Caught: {e}");
+                return false;
+            }
+        }
 
         /// <summary>
         /// Calculates the distance between 2 points on Earth
@@ -21,7 +53,7 @@ namespace IntercomTakeHomeTest
         public static double GreatCircleDistanceOnEarth(double latitude1, double longitude1, double latitude2, double longitude2)
         {
             //Making sure 
-            if(Math.Abs(latitude1) >= 90 || Math.Abs(latitude2) >= 90 || Math.Abs(longitude1) >= 180 || Math.Abs(longitude2) >= 180)
+            if(!AreValidCoordinates(latitude1, longitude1) || !AreValidCoordinates(latitude2, longitude2))
             {
                 throw new ArgumentOutOfRangeException("One or more of your arguments are out of range." + 
                     "The acceptable range for Latitude is -90 to +90 degrees and the acceptable range for Longitude is -180 to 180 degrees");

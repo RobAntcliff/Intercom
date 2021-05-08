@@ -30,7 +30,7 @@ namespace IntercomTakeHomeTest
             return customerList;            
         }
 
-        public static async Task CustomerListToJson(List<Customer> customerList){
+        public static void CustomerListToTextFile(List<Customer> customerList){
 
             var options = new JsonSerializerOptions
             {
@@ -39,7 +39,7 @@ namespace IntercomTakeHomeTest
 
             var json = System.Text.Json.JsonSerializer.Serialize(customerList, options);
 
-            await File.WriteAllTextAsync("Output/CustomersWithin100Kilometers" + DateTime.Now.Ticks + ".txt", json);
+            File.WriteAllText("Output/CustomersWithin100Kilometers" + DateTime.Now.Ticks + ".txt", json);
         }
     }
 }
