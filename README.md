@@ -39,6 +39,17 @@ In your Command Line, navigate to the IntercomTakeHomeTest folder.
 
 Run this command: ```dotnet run```
 
+## Testing
+
+After following the setup instructions above, In your Command Line, navigate to the IntercomTakeHomeTest.Test folder.
+
+Run this command: ```dotnet test```
+
+Example Output:
+
+![image](https://user-images.githubusercontent.com/9054477/117555038-aca1ef80-b053-11eb-99c1-56607e298b97.png)
+
+
 ## Output
 
 Sample output from the provided customers.txt file:
