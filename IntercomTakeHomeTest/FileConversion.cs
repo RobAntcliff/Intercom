@@ -9,6 +9,14 @@ namespace IntercomTakeHomeTest
 {
     public class FileConversion
     {
+
+        /// <summary>
+        /// Converts a Json list of customers to a List of Customer Objects
+        /// </summary>
+        /// <returns>
+        /// List of Customer Objects
+        /// </returns>
+        /// <param name="fileLocation">Location of the text file</param>
         public static List<Customer> JsonCustomerListToCustomerList(string fileLocation){
 
             var customerList = new List<Customer>();
@@ -38,6 +46,14 @@ namespace IntercomTakeHomeTest
             return customerList;
         }
 
+
+        /// <summary>
+        /// Converts a List of Customer Objects to a Json list of customers
+        /// </summary>
+        /// <returns>
+        /// Json list of customers
+        /// </returns>
+        /// <param name="customerList">List of Customer objects</param>
         public static string CustomerListToJson(List<Customer> customerList){
 
             var options = new JsonSerializerOptions

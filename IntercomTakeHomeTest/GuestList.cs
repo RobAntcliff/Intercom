@@ -8,8 +8,15 @@ namespace IntercomTakeHomeTest
         private const double IntercomDublinOfficeLatitude = 53.339428;
         private const double IntercomDublinOfficeLongitude = -6.257664;
 
+        /// <summary>
+        /// Gets a list of customers that are within 100 Kilometers of the Intercom office
+        /// </summary>
+        /// <returns>
+        /// Json list of customers that are within 100 Kilometers of the Intercom office
+        /// </returns>
+        /// <param name="fileLocation">Location of the text file</param>
         public static string GetListOfCustomersWithin100kmOfIntercomOffice(string fileLocation){
-            var customerList = FileConversion.JsonCustomerListToCustomerList("customers.txt");
+            var customerList = FileConversion.JsonCustomerListToCustomerList(@"" + fileLocation + "");
 
             var customersWithin100km = new List<Customer>();
 
