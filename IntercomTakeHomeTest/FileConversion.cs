@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace IntercomTakeHomeTest
 {
-    public class FileIO
+    public class FileConversion
     {
         public static List<Customer> JsonCustomerListToCustomerList(string fileLocation){
 
@@ -38,7 +38,7 @@ namespace IntercomTakeHomeTest
             return customerList;
         }
 
-        public static void CustomerListToTextFile(List<Customer> customerList){
+        public static string CustomerListToJson(List<Customer> customerList){
 
             var options = new JsonSerializerOptions
             {
@@ -47,7 +47,7 @@ namespace IntercomTakeHomeTest
 
             var json = System.Text.Json.JsonSerializer.Serialize(customerList, options);
 
-            File.WriteAllText("Output/CustomersWithin100Kilometers" + DateTime.Now.Ticks + ".txt", json);
+            return json;
         }
     }
 }
