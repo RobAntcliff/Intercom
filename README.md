@@ -39,6 +39,8 @@ In your Command Line, navigate to the IntercomTakeHomeTest folder.
 
 Run this command: ```dotnet run```
 
+The list of customers from the customer.txt file that are within 100Km of the Intercom office will be printed to the console. 
+
 ## Testing
 
 After following the setup instructions above, In your Command Line, navigate to the IntercomTakeHomeTest.Test folder.
